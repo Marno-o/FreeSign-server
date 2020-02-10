@@ -1,0 +1,18 @@
+server:
+  port: 80
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.94.3.50:3306/metsys?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+    username: metsys
+    password: "WHhjw7MZzc7kCft5"
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.marno.btm.entity
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true

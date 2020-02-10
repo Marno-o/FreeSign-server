@@ -9,11 +9,11 @@
     </insert>
 
     <!--新建签到表-->
-    <update id="makeSceneTable" parameterType="integer">
-            CREATE TABLE scene_${sceneID} (
-             `memberID` INT(10) NOT NULL COMMENT '用户ID' ,
-             `signTime` TIME NOT NULL COMMENT '签到时间' ,
-             PRIMARY KEY (`memberID`))
+    <update id="makeSceneTable" parameterType="String">
+        CREATE TABLE ${sceneTableName} (
+        memberID INT(11) NOT NULL,
+        signTime TIME NOT NULL,
+        PRIMARY KEY (memberID))
     </update>
 
 

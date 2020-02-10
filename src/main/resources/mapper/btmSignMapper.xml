@@ -3,7 +3,7 @@
 <mapper namespace="com.marno.btm.mapper.btmSignMapper">
 
     <!--查询场景ID-->
-    <select id="getScene" resultType="integer">
+    <select id="getScene" resultType="String">
         select SCENEID FROM scene
         <where>
             SERVICEID = #{btID}
@@ -11,9 +11,8 @@
     </select>
 
     <!--新增-->
-    <insert id="addMenber">/**/
-        insert into scene_#{sceneID} (memberID)
-        values (#{memberID})
+    <insert id="addMenber">
+        insert into scene_${sceneID} (memberID,signTime) values (#{memberID},#{signTime})
     </insert>
 </mapper>
 

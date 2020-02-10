@@ -32,7 +32,7 @@ public class BTSignController {
     @RequestMapping("/btsign")
     @ResponseBody
     public String btsign(@RequestBody Map<String, Integer> member){
-        int btId = member.get("btId");
+        String btId = Integer.toString(member.get("btId"));
         int memberId = member.get("memberId");
         return btmSignService.AddMember(btId,memberId);
     }

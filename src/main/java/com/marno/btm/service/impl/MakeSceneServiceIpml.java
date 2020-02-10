@@ -32,7 +32,8 @@ public class MakeSceneServiceIpml implements MakeSceneService {
         System.out.println("正在创建新的场景事件...");
         makeSceneMapper.makeScene(scene);
         System.out.println("场景事件已创建，正在创建新的签到表...");
-        makeSceneMapper.makeSceneTable(scene.getSceneID());
+        String sceneTableName = "scene_"+scene.getSceneID();
+        makeSceneMapper.makeSceneTable(sceneTableName);
         System.out.println("新的表已经建好");
         return "创建成功，签到设备ID为："+scene.getServiceID();
     }
@@ -48,7 +49,8 @@ public class MakeSceneServiceIpml implements MakeSceneService {
         String day=Integer.toString(c.get(Calendar.DAY_OF_MONTH));
         String hh=Integer.toString(c.get(Calendar.HOUR_OF_DAY));
         String mi=Integer.toString(c.get(Calendar.MINUTE));
-        System.out.println("新的场景ID："+year+month+day+hh+mi);
-        return year+month+day+hh+mi;
+        String ss = Integer.toString(c.get(Calendar.SECOND));
+        System.out.println("新的场景ID："+year+month+day+hh+mi+ss);
+        return year+month+day+hh+mi+ss;
     }
 }

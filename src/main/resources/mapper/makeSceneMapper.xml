@@ -16,5 +16,12 @@
         PRIMARY KEY (memberID))
     </update>
 
+<!--    重复检测-->
+    <select id="createTwice" resultType="Integer">
+        select originatorID FROM scene
+        <where>
+            serviceID = #{serviceID}
+        </where>
+    </select>
 
 </mapper>

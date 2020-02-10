@@ -21,21 +21,29 @@ public class MakeSceneServiceIpml implements MakeSceneService {
 
     @Override
     public String MakeScene(int originatorID, int mode, String serviceID,String theme) {
-        Scene scene = new Scene();
-        scene.setSceneID(makeSceneID());
-        scene.setCreatTime(new Date());
-        scene.setMode(mode);
-        scene.setOriginatorID(originatorID);
-        scene.setState(1);//默认创建即可用
-        scene.setServiceID(serviceID);
-        scene.setTheme(theme);
-        System.out.println("正在创建新的场景事件...");
-        makeSceneMapper.makeScene(scene);
-        System.out.println("场景事件已创建，正在创建新的签到表...");
-        String sceneTableName = "scene_"+scene.getSceneID();
-        makeSceneMapper.makeSceneTable(sceneTableName);
-        System.out.println("新的表已经建好");
-        return "创建成功，签到设备ID为："+scene.getServiceID();
+        String motto;
+        if(createTwice(serviceID)==null){
+            Scene scene = new Scene();
+            scene.setSceneID(makeSceneID());
+            scene.setCreatTime(new Date());
+            scene.setMode(mode);
+            scene.setOriginatorID(originatorID);
+            scene.setState(1);//默认创建即可用
+            scene.setServiceID(serviceID);
+            scene.setTheme(theme);
+            System.out.println("正在创建新的场景事件...");
+            makeSceneMapper.makeScene(scene);
+            System.out.println("场景事件已创建，正在创建新的签到表...");
+            String sceneTableName = "scene_"+scene.getSceneID();
+            makeSceneMapper.makeSceneTable(sceneTableName);
+            System.out.println("新的表已经建好");
+            motto = "创建成功，签到设备ID为："+scene.getServiceID();
+        }else if(createTwice(serviceID)==originatorID){
+            motto="这个信标已经被你用过啦，先停止它的任务吧！";
+        }else {
+            motto="这个信标已经被别人用啦，换个信标试试吧！";
+        }
+        return motto;
     }
 
     /**
@@ -52,5 +60,12 @@ public class MakeSceneServiceIpml implements MakeSceneService {
         String ss = Integer.toString(c.get(Calendar.SECOND));
         System.out.println("新的场景ID："+year+month+day+hh+mi+ss);
         return year+month+day+hh+mi+ss;
+    }
+
+    /**
+     * 查询是否有重复创建任务
+     */
+    Integer createTwice(String serviceID){
+        return makeSceneMapper.createTwice(serviceID);
     }
 }

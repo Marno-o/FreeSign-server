@@ -21,4 +21,9 @@ public interface makeSceneMapper {
      */
     public void makeSceneTable(String sceneID);
 
+    /**
+     *  检测重复
+     */
+    public Integer createTwice(String serviceID);
+
 }

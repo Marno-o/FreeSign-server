@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * table name:  users
  * author name: Marno
- * create time: 2020-02-10 04:42:41
+ * create time: 2020-02-11 01:26:08
  */ 
 public class Users{
 

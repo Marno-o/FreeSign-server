@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.marno.btm.mapper.makeSceneMapper">
+
+    <!--添加场景记录-->
+    <insert id="makeScene" parameterType="Scene">
+        insert into scene (SceneID,CreatTime,Mode,OriginatorID,State,ServiceID,Theme)
+        values (#{sceneID},#{creatTime},#{mode},#{originatorID},#{state},#{serviceID},#{theme})
+    </insert>
+
+    <!--新建签到表-->
+    <update id="makeSceneTable" parameterType="integer">
+            CREATE TABLE scene_${sceneID} (
+             `memberID` INT(10) NOT NULL COMMENT '用户ID' ,
+             `signTime` TIME NOT NULL COMMENT '签到时间' ,
+             PRIMARY KEY (`memberID`))
+    </update>
+
+
+</mapper>

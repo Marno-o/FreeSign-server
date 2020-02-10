@@ -4,21 +4,22 @@ import java.util.Date;
 /**
  * table name:  scene
  * author name: Marno
- * create time: 2020-02-10 04:42:41
+ * create time: 2020-02-11 01:26:08
  */ 
 public class Scene{
 
-	private int sceneID;
+	private String sceneID;
 	private int originatorID;
 	private String theme;
 	private int mode;
 	private int state;
 	private Date creatTime;
+	private String serviceID;
 
-	public void setSceneID(int sceneID){
+	public void setSceneID(String sceneID){
 		this.sceneID=sceneID;
 	}
-	public int getSceneID(){
+	public String getSceneID(){
 		return sceneID;
 	}
 	public void setOriginatorID(int originatorID){
@@ -51,6 +52,12 @@ public class Scene{
 	public Date getCreatTime(){
 		return creatTime;
 	}
+	public void setServiceID(String serviceID){
+		this.serviceID=serviceID;
+	}
+	public String getServiceID(){
+		return serviceID;
+	}
 
 	@Override
 	public String toString() {
@@ -61,6 +68,7 @@ public class Scene{
 			", mode=" + mode + 
 			", state=" + state + 
 			", creatTime=" + creatTime + 
+			", serviceID=" + serviceID + 
 			"}";
 	}
 }

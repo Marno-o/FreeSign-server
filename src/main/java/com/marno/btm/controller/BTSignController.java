@@ -1,12 +1,13 @@
 package com.marno.btm.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.marno.btm.service.btmSignService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author yz
@@ -30,7 +31,9 @@ public class BTSignController {
 
     @RequestMapping("/btsign")
     @ResponseBody
-    public String btsign(@RequestParam int btId,@RequestParam int memberId){
+    public String btsign(@RequestBody Map<String, Integer> member){
+        int btId = member.get("btId");
+        int memberId = member.get("memberId");
         return btmSignService.AddMember(btId,memberId);
     }
 }

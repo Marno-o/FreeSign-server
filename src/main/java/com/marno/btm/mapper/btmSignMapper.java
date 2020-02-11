@@ -10,10 +10,10 @@ public interface btmSignMapper {
     /**
      * 先根据信标ID找到场景ID
      */
-    public String getScene(String btID);
+    String getScene(String btID);
 
     /**
      *签到
      **/
-    public void addMenber(String sceneID, int memberID, Date signTime);
+    void addMenber(String sceneID, int memberID, Date signTime);
 }

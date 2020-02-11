@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * table name:  users
  * author name: Marno
- * create time: 2020-02-11 01:26:08
+ * create time: 2020-02-11 23:53:16
  */ 
 public class Users{
 
@@ -13,7 +13,10 @@ public class Users{
 	private String nickName;
 	private String avatarUrl;
 	private String gender;
-	private String unionid;
+	private String unionId;
+	private String city;
+	private String province;
+	private String country;
 
 	public void setUserID(int userID){
 		this.userID=userID;
@@ -45,11 +48,29 @@ public class Users{
 	public String getGender(){
 		return gender;
 	}
-	public void setUnionid(String unionid){
-		this.unionid=unionid;
+	public void setUnionId(String unionId){
+		this.unionId=unionId;
 	}
-	public String getUnionid(){
-		return unionid;
+	public String getUnionId(){
+		return unionId;
+	}
+	public void setCity(String city){
+		this.city=city;
+	}
+	public String getCity(){
+		return city;
+	}
+	public void setProvince(String province){
+		this.province=province;
+	}
+	public String getProvince(){
+		return province;
+	}
+	public void setCountry(String country){
+		this.country=country;
+	}
+	public String getCountry(){
+		return country;
 	}
 
 	@Override
@@ -60,7 +81,10 @@ public class Users{
 			", nickName=" + nickName + 
 			", avatarUrl=" + avatarUrl + 
 			", gender=" + gender + 
-			", unionid=" + unionid + 
+			", unionId=" + unionId + 
+			", city=" + city + 
+			", province=" + province + 
+			", country=" + country + 
 			"}";
 	}
 }

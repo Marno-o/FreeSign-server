@@ -1,6 +1,5 @@
 package com.marno.btm.entity;
 
-import java.util.Date;
 /**
  * table name:  users
  * author name: Marno
@@ -8,7 +7,7 @@ import java.util.Date;
  */ 
 public class Users{
 
-	private int userID;
+	private String userID;
 	private String userName;
 	private String nickName;
 	private String avatarUrl;
@@ -18,10 +17,10 @@ public class Users{
 	private String province;
 	private String country;
 
-	public void setUserID(int userID){
+	public void setUserID(String userID){
 		this.userID=userID;
 	}
-	public int getUserID(){
+	public String getUserID(){
 		return userID;
 	}
 	public void setUserName(String userName){

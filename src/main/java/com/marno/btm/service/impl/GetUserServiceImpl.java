@@ -1,6 +1,6 @@
 package com.marno.btm.service.impl;
 
-import com.marno.btm.mapper.getUserMapper;
+import com.marno.btm.mapper.newUserMapper;
 import com.marno.btm.service.GetUserService;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +17,11 @@ import java.util.Map;
 public class GetUserServiceImpl implements GetUserService {
 
     @Resource
-    private getUserMapper getUserMapper;
+    private newUserMapper newUserMapper;
 
     @Override
-    public void User2SQL(Map user) {
-        getUserMapper.newUser(user);
+    public void User2SQL(Map map) {
+        newUserMapper.userIn(map);
     }
 
-    @Override
-    public void SQL2User(String openID) {
-        getUserMapper.getUser(openID);
-    }
 }

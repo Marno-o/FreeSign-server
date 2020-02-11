@@ -133,6 +133,11 @@
                 <configuration>
                     <source>11</source>
                     <target>11</target>
+					<compilerArguments>
+						<verbose />
+						<bootclasspath>${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/jre/lib/jce.jar</bootclasspath>
+					</compilerArguments>
+					<encoding>utf-8</encoding>
                 </configuration>
             </plugin>
         </plugins>

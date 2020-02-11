@@ -35,6 +35,11 @@ public class UserController {
     public Map usersign(String encryptedData, String iv, String code){
         Map map = new HashMap();
 
+        System.out.println("        ====>   encryptedData:"+encryptedData);
+        System.out.println("        ====>   iv:"+iv);
+        System.out.println("        ====>   code:"+code);
+
+
         //登录凭证不能为空
         if (code == null || code.length() == 0) {
             map.put("status", 0);
@@ -42,10 +47,17 @@ public class UserController {
             return map;
         }
 
+        /**
+         * //小程序唯一标识   (在微信小程序管理后台获取)
+         *         String wxspAppid = "wxd9097feeb66c25f4";
+         *         //小程序的 app secret (在微信小程序管理后台获取)
+         *         String wxspSecret = "d0da446bb1ba3fb2ac5dfee134f8e96c";
+         */
+
         //小程序唯一标识   (在微信小程序管理后台获取)
-        String wxspAppid = "xxxxxxxxxxxxxx";
+        String wxspAppid = "wxd9097feeb66c25f4";
         //小程序的 app secret (在微信小程序管理后台获取)
-        String wxspSecret = "xxxxxxxxxxxxxx";
+        String wxspSecret = "d0da446bb1ba3fb2ac5dfee134f8e96c";
         //授权（必填）
         String grant_type = "authorization_code";
 
@@ -57,6 +69,7 @@ public class UserController {
         String sr = HttpRequest.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
         //解析相应内容（转换成json对象）
         JSONObject json = JSONObject.fromObject(sr);
+        System.out.println("        ====>   以解密，内容："+json);
         //获取会话密钥（session_key）
         String session_key = json.get("session_key").toString();
         //用户的唯一标识（openid）
@@ -83,8 +96,9 @@ public class UserController {
                 /**
                  * 更新用户，存入数据库
                  */
-                getUserService.User2SQL(map);
-                getUserService.SQL2User(userInfoJSON.get("openId").toString());
+                getUserService.User2SQL(userInfo);
+
+                map.put("userInfo", userInfo);
 
                 return map;
             }

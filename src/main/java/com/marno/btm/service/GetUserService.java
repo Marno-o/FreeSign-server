@@ -10,5 +10,4 @@ import java.util.Map;
 
 public interface GetUserService {
     void User2SQL(Map user);
-    void SQL2User(String openID);
 }

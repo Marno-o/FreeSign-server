@@ -11,7 +11,6 @@ import java.util.Map;
  */
 
 @Mapper
-public interface getUserMapper {
-    void newUser(Map map);
-    Map getUser(String openID);
+public interface newUserMapper {
+    void userIn(Map map);
 }

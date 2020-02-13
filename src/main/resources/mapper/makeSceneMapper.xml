@@ -11,7 +11,7 @@
     <!--新建签到表-->
     <update id="makeSceneTable" parameterType="String">
         CREATE TABLE ${sceneTableName} (
-        memberID INT(11) NOT NULL,
+        memberID VARCHAR(55) NOT NULL,
         signTime TIME NOT NULL,
         PRIMARY KEY (memberID))
     </update>

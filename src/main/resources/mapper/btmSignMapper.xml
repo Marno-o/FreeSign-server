@@ -11,7 +11,7 @@
     </select>
 
     <!--新增-->
-    <insert id="addMenber">
+    <insert id="addMember">
         insert into scene_${sceneID} (memberID,signTime) values (#{memberID},#{signTime})
     </insert>
 </mapper>

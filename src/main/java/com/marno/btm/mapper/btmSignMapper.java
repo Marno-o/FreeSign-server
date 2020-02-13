@@ -15,5 +15,5 @@ public interface btmSignMapper {
     /**
      *签到
      **/
-    void addMenber(String sceneID, int memberID, Date signTime);
+    void addMember(String sceneID, String  memberID, Date signTime);
 }

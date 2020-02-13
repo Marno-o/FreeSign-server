@@ -5,7 +5,7 @@ server:
   tomcat.uri-encoding: UTF-8
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.94.3.50:3306/metsys?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
     username: metsys
     password: "WHhjw7MZzc7kCft5"

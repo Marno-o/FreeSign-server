@@ -2,11 +2,11 @@ package com.marno.btm.controller;
 
 import com.marno.btm.service.btmSignService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -31,9 +31,11 @@ public class BTSignController {
 
     @RequestMapping("/btsign")
     @ResponseBody
-    public String btsign(@RequestBody Map<String, Integer> member){
-        String btId = Integer.toString(member.get("btId"));
-        int memberId = member.get("memberId");
-        return btmSignService.AddMember(btId,memberId);
+    public Map btsign(String btId,String memberId){
+        System.out.println("btid:"+btId+"memberID:"+memberId);
+        Map map = new HashMap();
+        map.put("status", 1);
+        map.put("msg", btmSignService.AddMember(btId,memberId));
+        return map;
     }
 }

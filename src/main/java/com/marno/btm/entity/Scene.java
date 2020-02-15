@@ -4,17 +4,20 @@ import java.util.Date;
 /**
  * table name:  scene
  * author name: Marno
- * create time: 2020-02-11 23:53:16
+ * create time: 2020-02-16 02:54:05
  */ 
 public class Scene{
 
 	private String sceneID;
-	private int originatorID;
+	private String originatorID;
 	private String theme;
 	private int mode;
-	private int state;
 	private Date creatTime;
-	private String serviceID;
+	private String deviceID;
+	private String message;
+	private Date startTime;
+	private Date endTime;
+	private int ifRegister;
 
 	public void setSceneID(String sceneID){
 		this.sceneID=sceneID;
@@ -22,10 +25,10 @@ public class Scene{
 	public String getSceneID(){
 		return sceneID;
 	}
-	public void setOriginatorID(int originatorID){
+	public void setOriginatorID(String originatorID){
 		this.originatorID=originatorID;
 	}
-	public int getOriginatorID(){
+	public String getOriginatorID(){
 		return originatorID;
 	}
 	public void setTheme(String theme){
@@ -40,23 +43,41 @@ public class Scene{
 	public int getMode(){
 		return mode;
 	}
-	public void setState(int state){
-		this.state=state;
-	}
-	public int getState(){
-		return state;
-	}
 	public void setCreatTime(Date creatTime){
 		this.creatTime=creatTime;
 	}
 	public Date getCreatTime(){
 		return creatTime;
 	}
-	public void setServiceID(String serviceID){
-		this.serviceID=serviceID;
+	public void setDeviceID(String deviceID){
+		this.deviceID=deviceID;
 	}
-	public String getServiceID(){
-		return serviceID;
+	public String getDeviceID(){
+		return deviceID;
+	}
+	public void setMessage(String message){
+		this.message=message;
+	}
+	public String getMessage(){
+		return message;
+	}
+	public void setStartTime(Date startTime){
+		this.startTime=startTime;
+	}
+	public Date getStartTime(){
+		return startTime;
+	}
+	public void setEndTime(Date endTime){
+		this.endTime=endTime;
+	}
+	public Date getEndTime(){
+		return endTime;
+	}
+	public void setIfRegister(int ifRegister){
+		this.ifRegister=ifRegister;
+	}
+	public int getIfRegister(){
+		return ifRegister;
 	}
 
 	@Override
@@ -66,9 +87,12 @@ public class Scene{
 			", originatorID=" + originatorID + 
 			", theme=" + theme + 
 			", mode=" + mode + 
-			", state=" + state + 
 			", creatTime=" + creatTime + 
-			", serviceID=" + serviceID + 
+			", deviceID=" + deviceID + 
+			", message=" + message + 
+			", startTime=" + startTime + 
+			", endTime=" + endTime + 
+			", ifRegister=" + ifRegister + 
 			"}";
 	}
 }

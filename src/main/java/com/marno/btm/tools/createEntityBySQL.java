@@ -1,14 +1,13 @@
 package com.marno.btm.tools;
 
-import org.apache.logging.log4j.util.PropertiesUtil;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author yz
@@ -32,7 +31,7 @@ public class createEntityBySQL {
     private static String packageOutPath ="com.marno.btm.entity";// 指定实体生成所在包的路径
 
     private static String authorName = "Marno";// 作者名字
-    private static String[] generateTables = null;//指定需要生成的表的表名，全部生成设置为null
+    private static String[] generateTables = {"scene","users"};//指定需要生成的表的表名，全部生成设置为null
     /**
      * 获取数据库连接
      * 同目录下建立 jdbc.properties 文件，输入相关数据库信息

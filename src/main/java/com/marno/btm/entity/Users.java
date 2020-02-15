@@ -1,9 +1,10 @@
 package com.marno.btm.entity;
 
+import java.util.Date;
 /**
  * table name:  users
  * author name: Marno
- * create time: 2020-02-11 23:53:16
+ * create time: 2020-02-16 02:54:06
  */ 
 public class Users{
 

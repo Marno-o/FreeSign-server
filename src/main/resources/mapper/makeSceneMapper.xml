@@ -4,23 +4,27 @@
 
     <!--添加场景记录-->
     <insert id="makeScene" parameterType="Scene">
-        insert into scene (SceneID,CreatTime,Mode,OriginatorID,State,ServiceID,Theme)
-        values (#{sceneID},#{creatTime},#{mode},#{originatorID},#{state},#{serviceID},#{theme})
+        insert into scene (SceneID,CreatTime,Mode,OriginatorID,DeviceID,Theme,Message,StartTime,EndTime,IfRegister)
+        values (#{sceneID},#{creatTime},#{mode},#{originatorID},#{deviceID},#{theme},#{message},#{startTime},#{endTime},#{ifRegister})
     </insert>
 
     <!--新建签到表-->
     <update id="makeSceneTable" parameterType="String">
         CREATE TABLE ${sceneTableName} (
         memberID VARCHAR(55) NOT NULL,
-        signTime TIME NOT NULL,
+        state VARCHAR(55) NOT NULL,
+        registerTime DATETIME,
+        signTime DATETIME,
         PRIMARY KEY (memberID))
     </update>
 
 <!--    重复检测-->
-    <select id="createTwice" resultType="Integer">
+    <select id="deviceUsed" resultType="String">
         select originatorID FROM scene
         <where>
-            serviceID = #{serviceID}
+            deviceID = #{deviceID} and
+            STARTTIME >= #{strtime,jdbcType=TIMESTAMP}
+            AND #{endtime,jdbcType=TIMESTAMP} >= ENDTIME
         </where>
     </select>
 

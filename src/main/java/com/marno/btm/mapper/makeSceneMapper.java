@@ -3,6 +3,8 @@ package com.marno.btm.mapper;
 import com.marno.btm.entity.Scene;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
+
 /**
  * @author 叶勇
  * @version 1.0
@@ -24,6 +26,6 @@ public interface makeSceneMapper {
     /**
      *  检测重复
      */
-    public Integer createTwice(String serviceID);
+    public String deviceUsed(String deviceID, Date strtime, Date endtime);
 
 }

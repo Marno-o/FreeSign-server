@@ -19,8 +19,8 @@ public class MakeSceneServiceIpml implements MakeSceneService {
     private com.marno.btm.mapper.makeSceneMapper makeSceneMapper;
 
     @Override
-    public String MakeScene(Scene scene) {
-        String motto;
+    public int MakeScene(Scene scene) {
+        int motto;
         if(deviceUsed(scene.getDeviceID(),scene.getStartTime(),scene.getEndTime())==null){
             System.out.println("正在创建新的场景事件...");
             makeSceneMapper.makeScene(scene);
@@ -28,11 +28,14 @@ public class MakeSceneServiceIpml implements MakeSceneService {
             String sceneTableName = "scene_"+scene.getSceneID();
             makeSceneMapper.makeSceneTable(sceneTableName);
             System.out.println("新的表已经建好");
-            motto = "创建成功，签到设备ID为："+scene.getDeviceID();
+            System.out.println("创建成功，签到设备ID为："+scene.getDeviceID());
+            motto = 1;
         }else if(deviceUsed(scene.getDeviceID(),scene.getStartTime(),scene.getEndTime())==scene.getOriginatorID()){
-            motto="这个信标已经被你用过啦，先停止它的任务吧！";
+            System.out.println("这个信标已经被你用过啦，先停止它的任务吧！");
+            motto=2;
         }else {
-            motto="这个信标已经被别人用啦，换个信标试试吧！";
+            System.out.println("这个信标已经被别人用啦，换个信标试试吧！");
+            motto=3;
         }
         return motto;
     }

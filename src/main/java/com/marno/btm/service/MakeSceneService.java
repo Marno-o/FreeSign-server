@@ -8,5 +8,5 @@ import com.marno.btm.entity.Scene;
  * @date 2020/2/10 22:42
  */
 public interface MakeSceneService {
-    String MakeScene(Scene scene);
+    int MakeScene(Scene scene);
 }

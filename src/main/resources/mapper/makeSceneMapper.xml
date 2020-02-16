@@ -4,8 +4,8 @@
 
     <!--添加场景记录-->
     <insert id="makeScene" parameterType="Scene">
-        insert into scene (SceneID,CreatTime,Mode,OriginatorID,DeviceID,Theme,Message,StartTime,EndTime,IfRegister)
-        values (#{sceneID},#{creatTime},#{mode},#{originatorID},#{deviceID},#{theme},#{message},#{startTime},#{endTime},#{ifRegister})
+        insert into scene (sceneID,originatorID,theme,hoster,CreatTime,StartTime,endTime,address,ifRegister,message,mode,deviceId)
+        values (#{sceneID},#{originatorID},#{theme},#{hoster},#{creatTime},#{startTime},#{endTime},#{address},#{ifRegister},#{message},#{mode},#{deviceID})
     </insert>
 
     <!--新建签到表-->

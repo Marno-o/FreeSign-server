@@ -4,20 +4,22 @@ import java.util.Date;
 /**
  * table name:  scene
  * author name: Marno
- * create time: 2020-02-16 02:54:05
+ * create time: 2020-02-16 22:55:01
  */ 
 public class Scene{
 
 	private String sceneID;
 	private String originatorID;
 	private String theme;
-	private int mode;
+	private String hoster;
 	private Date creatTime;
-	private String deviceID;
-	private String message;
 	private Date startTime;
 	private Date endTime;
+	private String address;
 	private int ifRegister;
+	private String message;
+	private int mode;
+	private String deviceID;
 
 	public void setSceneID(String sceneID){
 		this.sceneID=sceneID;
@@ -37,29 +39,17 @@ public class Scene{
 	public String getTheme(){
 		return theme;
 	}
-	public void setMode(int mode){
-		this.mode=mode;
+	public void setHoster(String hoster){
+		this.hoster=hoster;
 	}
-	public int getMode(){
-		return mode;
+	public String getHoster(){
+		return hoster;
 	}
 	public void setCreatTime(Date creatTime){
 		this.creatTime=creatTime;
 	}
 	public Date getCreatTime(){
 		return creatTime;
-	}
-	public void setDeviceID(String deviceID){
-		this.deviceID=deviceID;
-	}
-	public String getDeviceID(){
-		return deviceID;
-	}
-	public void setMessage(String message){
-		this.message=message;
-	}
-	public String getMessage(){
-		return message;
 	}
 	public void setStartTime(Date startTime){
 		this.startTime=startTime;
@@ -73,11 +63,35 @@ public class Scene{
 	public Date getEndTime(){
 		return endTime;
 	}
+	public void setAddress(String address){
+		this.address=address;
+	}
+	public String getAddress(){
+		return address;
+	}
 	public void setIfRegister(int ifRegister){
 		this.ifRegister=ifRegister;
 	}
 	public int getIfRegister(){
 		return ifRegister;
+	}
+	public void setMessage(String message){
+		this.message=message;
+	}
+	public String getMessage(){
+		return message;
+	}
+	public void setMode(int mode){
+		this.mode=mode;
+	}
+	public int getMode(){
+		return mode;
+	}
+	public void setDeviceID(String deviceID){
+		this.deviceID=deviceID;
+	}
+	public String getDeviceID(){
+		return deviceID;
 	}
 
 	@Override
@@ -86,13 +100,15 @@ public class Scene{
 			"sceneID=" + sceneID + 
 			", originatorID=" + originatorID + 
 			", theme=" + theme + 
-			", mode=" + mode + 
+			", hoster=" + hoster + 
 			", creatTime=" + creatTime + 
-			", deviceID=" + deviceID + 
-			", message=" + message + 
 			", startTime=" + startTime + 
 			", endTime=" + endTime + 
+			", address=" + address + 
 			", ifRegister=" + ifRegister + 
+			", message=" + message + 
+			", mode=" + mode + 
+			", deviceID=" + deviceID + 
 			"}";
 	}
 }

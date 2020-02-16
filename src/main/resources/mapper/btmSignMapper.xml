@@ -6,7 +6,7 @@
     <select id="getScene" resultType="String">
         select SCENEID FROM scene
         <where>
-            SERVICEID = #{btID}
+            DEVICEID = #{btID}
         </where>
     </select>
 

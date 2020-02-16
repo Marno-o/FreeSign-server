@@ -45,6 +45,7 @@ public class MakeSceneServiceIpml implements MakeSceneService {
      * 查询是否有重复创建任务
      */
     String deviceUsed(String deviceID, Date strtime,Date endtime){
+        System.out.println("makeSceneMapper.deviceUsed(deviceID,strtime,endtime)"+makeSceneMapper.deviceUsed(deviceID,strtime,endtime));
         return makeSceneMapper.deviceUsed(deviceID,strtime,endtime);
     }
 }

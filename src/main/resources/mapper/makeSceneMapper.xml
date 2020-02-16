@@ -24,6 +24,8 @@
         <where>
             deviceID = #{deviceID} and
             STARTTIME >= #{strtime,jdbcType=TIMESTAMP}
+            AND #{strtime,jdbcType=TIMESTAMP} >= ENDTIME
+            OR STARTTIME >= #{endtime,jdbcType=TIMESTAMP}
             AND #{endtime,jdbcType=TIMESTAMP} >= ENDTIME
         </where>
     </select>

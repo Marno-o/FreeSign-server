@@ -31,6 +31,7 @@ public class MakeSceneController {
     @RequestMapping("/makescene")
     @ResponseBody
     public int makescene(String originatorID,
+                            String userName,
                             String theme,
                             String hoster,
                             String startdate,
@@ -62,6 +63,7 @@ public class MakeSceneController {
         Scene scene = new Scene();
         scene.setSceneID(makeSceneID());
         scene.setOriginatorID(originatorID);
+        scene.setUserName(userName);
         scene.setTheme(theme);
         scene.setHoster(hoster);
         scene.setCreatTime(new Date());

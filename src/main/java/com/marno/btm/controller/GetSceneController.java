@@ -34,10 +34,17 @@ public class GetSceneController {
     }
 
 
-    @RequestMapping("/getscenebyoid")//根据发起人id获取
+    @RequestMapping("/getscenebyoid/ready")//根据发起人id获取
     @ResponseBody
-    public List<Map> getSceneList(String originatorID){
-        List<Map> map = getSceneService.getSceneList(originatorID);
+    public List<Map> getSceneListReady(String originatorID){
+        List<Map> map = getSceneService.getSceneListReady(originatorID);
+        return map;
+    }
+
+    @RequestMapping("/getscenebyoid/done")//根据发起人id获取
+    @ResponseBody
+    public List<Map> getSceneListDone(String originatorID){
+        List<Map> map = getSceneService.getSceneListDone(originatorID);
         return map;
     }
 }

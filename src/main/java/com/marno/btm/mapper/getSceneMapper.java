@@ -3,6 +3,7 @@ package com.marno.btm.mapper;
 import com.marno.btm.entity.Scene;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,5 +17,5 @@ import java.util.Map;
 public interface getSceneMapper {
     public Scene getScene(String sceneID);
 
-    public List<Map> getSceneList(String originatorID);
+    public List<Map> getSceneList(String originatorID, Date nowTime);
 }

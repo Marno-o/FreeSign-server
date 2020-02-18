@@ -13,5 +13,7 @@ import java.util.Map;
 public interface GetSceneService {
     public Scene getScene(String sceneID);
 
-    public List<Map> getSceneList(String originatorID);
+    public List<Map> getSceneListReady(String originatorID);
+
+    public List<Map> getSceneListDone(String originatorID);
 }

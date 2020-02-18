@@ -9,8 +9,12 @@
 <!--        <result column="theme" property="value" jdbcType="VARCHAR" />-->
 <!--    </resultMap>-->
     <!-- 查询出多条记录 -->
-    <select id="getSceneList" resultType="java.util.Map" parameterType="java.lang.String">
+    <select id="getSceneList" resultType="java.util.Map">
         select sceneID , theme from scene where originatorID = #{originatorID}
+        <if test="nowTime!=null">
+            and endTime>=#{nowTime}
+        </if>
+        order by startTime desc
     </select>
 
     <!--    查询场景详情-->

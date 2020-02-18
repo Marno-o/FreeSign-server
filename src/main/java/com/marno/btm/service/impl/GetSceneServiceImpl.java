@@ -5,6 +5,7 @@ import com.marno.btm.service.GetSceneService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +28,16 @@ public class GetSceneServiceImpl implements GetSceneService {
     }
 
     @Override
-    public List<Map> getSceneList(String originatorID) {
-        List<Map> map = getSceneMapper.getSceneList(originatorID);
+    public List<Map> getSceneListReady(String originatorID) {
+        Date nowTime = new Date();
+        List<Map> map = getSceneMapper.getSceneList(originatorID,nowTime);
+        return map;
+    }
+
+    @Override
+    public List<Map> getSceneListDone(String originatorID) {
+        Date nowTime = null;
+        List<Map> map = getSceneMapper.getSceneList(originatorID,nowTime);
         return map;
     }
 

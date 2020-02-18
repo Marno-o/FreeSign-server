@@ -1,5 +1,7 @@
 package com.marno.btm.service;
 
 public interface btmSignService {
-    String AddMember(String btID,String memberID);
+    int AddMember(String btID,String memberID);
+
+    String getSceneID(String btID);
 }

@@ -13,9 +13,29 @@ public class btmSignServiceImpl implements btmSignService {
     private com.marno.btm.mapper.btmSignMapper btmSignMapper;
 
     @Override
-    public String AddMember(String btID, String memberID) {
+    public int AddMember(String btID, String memberID) {
         Date signTime = new Date();
-        btmSignMapper.addMember(btmSignMapper.getScene(btID),memberID,signTime);
-        return "签到成功！";
+        String sceneID = getSceneID(btID);
+        if(sceneID == null){
+            return 2;
+        }else if(btmSignMapper.IfRegister(sceneID) == 2) {//查询scene不需要报名
+            if(btmSignMapper.getState(memberID,sceneID) == null){
+                btmSignMapper.addMember(btmSignMapper.getScene(btID,new Date()), memberID, signTime);
+                return 1;
+            }else {
+                return 0;
+            }
+        }else if(btmSignMapper.getState(memberID,sceneID) == null){//需要报名,未报名过
+            return 3;
+        }else if(btmSignMapper.getState(memberID,sceneID) == 1){//已报名
+            btmSignMapper.addMember(btmSignMapper.getScene(btID,new Date()), memberID, signTime);
+            return 1;
+        }else{//已签到
+            return 0;
+        }
+    }
+
+    public String getSceneID(String btID){
+        return btmSignMapper.getScene(btID,new Date());
     }
 }

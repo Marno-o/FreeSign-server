@@ -34,8 +34,21 @@ public class BTSignController {
     public Map btsign(String btId,String memberId){
         System.out.println("btid:"+btId+"memberID:"+memberId);
         Map map = new HashMap();
-        map.put("status", 1);
-        map.put("msg", btmSignService.AddMember(btId,memberId));
+        map.put("sceneID",btmSignService.getSceneID(btId));
+        if(btmSignService.AddMember(btId,memberId) == 1){
+            map.put("status", 1);
+            map.put("msg", "签到成功");
+        }else if(btmSignService.AddMember(btId,memberId) == 2){
+            map.put("status", 2);
+            map.put("msg", "没有绑定场景");
+        }else if(btmSignService.AddMember(btId,memberId) == 3){
+            map.put("status", 3);
+            map.put("msg", "该场景需要报名，请联系组织人员报名");
+        }else {
+            map.put("status", 1);
+            map.put("msg", "已签到，不要重复签到");
+        }
+
         return map;
     }
 }

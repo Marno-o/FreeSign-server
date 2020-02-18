@@ -7,13 +7,29 @@
         select SCENEID FROM scene
         <where>
             DEVICEID = #{btID}
+            and endTime>=#{nowTime}
+            and #{nowTime}>=startTime
         </where>
     </select>
 
     <!--新增-->
     <insert id="addMember">
-        insert into scene_${sceneID} (memberID,signTime) values (#{memberID},#{signTime})
+        insert into scene_${sceneID} (memberID,state,signTime) values (#{memberID},2,#{signTime})
     </insert>
+
+    <select id="IfRegister" resultType="Integer">
+        select IfRegister FROM scene
+        <where>
+            SCENEID = #{sceneID}
+        </where>
+    </select>
+
+    <select id="getState" resultType="Integer">
+        select state FROM scene_${sceneID}
+        <where>
+            memberID = #{memberID}
+        </where>
+    </select>
 </mapper>
 
         <!--1.namespace中需要与使用@Mapper的接口对应

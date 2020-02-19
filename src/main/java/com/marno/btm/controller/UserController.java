@@ -1,6 +1,7 @@
 package com.marno.btm.controller;
 
 
+import com.marno.btm.entity.Users;
 import com.marno.btm.service.GetUserService;
 import com.marno.btm.tools.AesCbcUtil;
 import com.marno.btm.tools.HttpRequest;
@@ -75,38 +76,58 @@ public class UserController {
         //用户的唯一标识（openid）
         String openid = (String) json.get("openid");
 
-        //////////////// 2、对encryptedData加密数据进行AES解密 ////////////////
-        try {
-            String result = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
-            if (null != result && result.length() > 0) {
-                map.put("status", 1);
-                map.put("msg", "解密成功");
+        if(getUserService.ifsigned(openid)){
+            map.put("status", 1);
+            map.put("msg", "已注册");
+            Users user = getUserService.SQL2User(openid);
+            map.put("userInfo", user);
+            return map;
+        }else {
+            //////////////// 2、对encryptedData加密数据进行AES解密 ////////////////
+            try {
+                String result = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
+                if (null != result && result.length() > 0) {
+                    map.put("status", 1);
+                    map.put("msg", "解密成功");
 
-                JSONObject userInfoJSON = JSONObject.fromObject(result);
-                Map userInfo = new HashMap();
-                userInfo.put("openId", userInfoJSON.get("openId"));
-                userInfo.put("nickName", userInfoJSON.get("nickName"));
-                userInfo.put("gender", userInfoJSON.get("gender"));
-                userInfo.put("city", userInfoJSON.get("city"));
-                userInfo.put("province", userInfoJSON.get("province"));
-                userInfo.put("country", userInfoJSON.get("country"));
-                userInfo.put("avatarUrl", userInfoJSON.get("avatarUrl"));
-                userInfo.put("unionId", userInfoJSON.get("unionId"));
-
-                /**
-                 * 更新用户，存入数据库
-                 */
-                getUserService.User2SQL(userInfo);
-
-                map.put("userInfo", userInfo);
-
-                return map;
+                    JSONObject userInfoJSON = JSONObject.fromObject(result);
+                    Map userInfo = new HashMap();
+                    userInfo.put("userId", userInfoJSON.get("openId"));
+                    userInfo.put("nickName", userInfoJSON.get("nickName"));
+                    userInfo.put("gender", userInfoJSON.get("gender"));
+                    userInfo.put("city", userInfoJSON.get("city"));
+                    userInfo.put("province", userInfoJSON.get("province"));
+                    userInfo.put("country", userInfoJSON.get("country"));
+                    userInfo.put("avatarUrl", userInfoJSON.get("avatarUrl"));
+                    userInfo.put("unionId", userInfoJSON.get("unionId"));
+                    userInfo.put("userName", userInfoJSON.get("nickName"));
+                    /**
+                     * 更新用户，存入数据库
+                     */
+                    getUserService.User2SQL(userInfo);
+                    map.put("userInfo", userInfo);
+                    return map;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
         map.put("status", 0);
         map.put("msg", "解密失败");
+        return map;
+    }
+
+    @RequestMapping("/changename")
+    @ResponseBody
+    public Map changeName(String newName, String openId){
+        System.out.println("        ====>   即将修改名称："+newName+"       id:"+openId);
+        getUserService.changeName(newName,openId);
+        Map map = new HashMap();
+        map.put("status",0);
+        map.put("userInfo", getUserService.SQL2User(openId));
+        map.put("msg", "修改成功");
+        System.out.println("        ====>   Map："+map);
         return map;
     }
 }

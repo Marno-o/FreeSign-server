@@ -3,10 +3,24 @@
 <mapper namespace="com.marno.btm.mapper.newUserMapper">
     <insert id="userIn" parameterType="java.util.Map">
         INSERT INTO users(userID,nickName,gender,city,province,country,avatarUrl,unionId)
-        SELECT #{openId},#{nickName},#{gender},#{city},#{province},#{country},#{avatarUrl},#{unionId}
+        SELECT #{userId},#{nickName},#{gender},#{city},#{province},#{country},#{avatarUrl},#{unionId}
         FROM DUAL
         WHERE NOT EXISTS(SELECT * FROM users WHERE userID = #{openId})
     </insert>
+
+    <select id="ifsigned" resultType="Integer">
+       SELECT COUNT(*) FROM users
+        WHERE userID = #{openid}
+    </select>
+
+    <select id="getUser" resultType="com.marno.btm.entity.Users">
+        SELECT * FROM users
+        WHERE userID = #{openid}
+    </select>
+
+    <update id="changeName" >
+        UPDATE users SET userName = #{newName} WHERE userID = #{openId}
+    </update>
 </mapper>
 
         <!--1.namespace中需要与使用@Mapper的接口对应

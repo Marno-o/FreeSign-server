@@ -1,5 +1,6 @@
 package com.marno.btm.mapper;
 
+import com.marno.btm.entity.Users;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
@@ -13,4 +14,7 @@ import java.util.Map;
 @Mapper
 public interface newUserMapper {
     void userIn(Map map);
+    Integer ifsigned(String openid);
+    Users getUser(String openid);
+    void changeName(String newName, String openId);
 }

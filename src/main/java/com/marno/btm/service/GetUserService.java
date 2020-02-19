@@ -1,5 +1,7 @@
 package com.marno.btm.service;
 
+import com.marno.btm.entity.Users;
+
 import java.util.Map;
 
 /**
@@ -10,4 +12,7 @@ import java.util.Map;
 
 public interface GetUserService {
     void User2SQL(Map user);
+    boolean ifsigned(String openid);
+    Users SQL2User(String openid);
+    String changeName(String newName, String openId);
 }

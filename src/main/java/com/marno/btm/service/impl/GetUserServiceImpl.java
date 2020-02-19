@@ -1,5 +1,6 @@
 package com.marno.btm.service.impl;
 
+import com.marno.btm.entity.Users;
 import com.marno.btm.mapper.newUserMapper;
 import com.marno.btm.service.GetUserService;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,27 @@ public class GetUserServiceImpl implements GetUserService {
     @Override
     public void User2SQL(Map map) {
         newUserMapper.userIn(map);
+    }
+
+    @Override
+    public boolean ifsigned(String openid) {
+        System.out.println("        ====>   openid："+openid);
+        if(newUserMapper.ifsigned(openid) == 0){
+            return false;
+        }else {
+        return true;
+    }}
+
+    @Override
+    public Users SQL2User(String openid) {
+        Users user = newUserMapper.getUser(openid);
+        return user;
+    }
+
+    @Override
+    public String changeName(String newName, String openId) {
+        newUserMapper.changeName(newName,openId);
+        return "修改完成";
     }
 
 }

@@ -4,8 +4,8 @@
 
     <!--添加场景记录-->
     <insert id="makeScene" parameterType="Scene">
-        insert into scene (sceneID,originatorID,userName,theme,hoster,CreatTime,StartTime,endTime,address,ifRegister,message,mode,deviceId)
-        values (#{sceneID},#{originatorID},#{userName},#{theme},#{hoster},#{creatTime},#{startTime},#{endTime},#{address},#{ifRegister},#{message},#{mode},#{deviceID})
+        insert into scene (sceneID,originatorID,userPic,userName,theme,hoster,CreatTime,StartTime,endTime,address,ifRegister,message,mode,deviceId)
+        values (#{sceneID},#{originatorID},#{userPic},#{userName},#{theme},#{hoster},#{creatTime},#{startTime},#{endTime},#{address},#{ifRegister},#{message},#{mode},#{deviceID})
     </insert>
 
     <!--新建签到表-->
@@ -23,10 +23,8 @@
         select originatorID FROM scene
         <where>
             deviceID = #{deviceID} and
-            STARTTIME >= #{strtime,jdbcType=TIMESTAMP}
-            AND #{strtime,jdbcType=TIMESTAMP} >= ENDTIME
-            OR STARTTIME >= #{endtime,jdbcType=TIMESTAMP}
-            AND #{endtime,jdbcType=TIMESTAMP} >= ENDTIME
+            STARTTIME >= #{strtime}>= ENDTIME
+            OR STARTTIME >= #{endtime} >= ENDTIME
         </where>
     </select>
 

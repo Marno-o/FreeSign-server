@@ -3,7 +3,7 @@ package com.marno.btm.entity;
 /**
  * table name:  users
  * author name: Marno
- * create time: 2020-02-19 04:07:27
+ * create time: 2020-02-21 14:30:44
  */ 
 public class Users{
 

@@ -11,6 +11,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 叶勇
@@ -30,29 +32,31 @@ public class MakeSceneController {
 
     @RequestMapping("/makescene")
     @ResponseBody
-    public int makescene(String originatorID,
-                            String userName,
-                            String theme,
-                            String hoster,
-                            String startdate,
-                            String starttime,
-                            Integer timelong,
-                            String address,
-                            boolean ifRegister,
-                            String mymessage,
-                            int mode,
-                            String deviceId
+    public Map makescene(String originatorID,
+                         String userPic,
+                         String userName,
+                         String theme,
+                         String hoster,
+                         String startdate,
+                         String starttime,
+                         Integer timelong,
+                         String address,
+                         boolean ifRegister,
+                         String mymessage,
+                         int mode,
+                         String deviceId
                             ) throws ParseException {
 
         System.out.println("originatorID," +originatorID+
-                         "\ntheme," +theme+
-                         "\nmode," +mode+
-                         "\ndeviceId,"+deviceId +
-                         "\nmymessage," +mymessage+
-                         "\nifRegister," +ifRegister+
-                         "\nstdate,"+startdate +
-                         "\nsttime," +starttime+
-                         "\ntimelong      "+timelong);
+                "\nuserPic," +userPic+
+                           "\ntheme," +theme+
+                           "\nmode," +mode+
+                           "\ndeviceId,"+deviceId +
+                           "\nmymessage," +mymessage+
+                           "\nifRegister," +ifRegister+
+                           "\nstdate,"+startdate +
+                           "\nsttime," +starttime+
+                           "\ntimelong      "+timelong);
 
         SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date startTime=formatter.parse(startdate+" "+starttime);
@@ -61,8 +65,10 @@ public class MakeSceneController {
         System.out.println("sttime:"+startTime+"endtime:"+endTime);
 
         Scene scene = new Scene();
-        scene.setSceneID(makeSceneID());
+        String newsceneID = makeSceneID();
+        scene.setSceneID(newsceneID);
         scene.setOriginatorID(originatorID);
+        scene.setUserPic(userPic);
         scene.setUserName(userName);
         scene.setTheme(theme);
         scene.setHoster(hoster);
@@ -79,7 +85,13 @@ public class MakeSceneController {
         scene.setMode(mode);
         scene.setDeviceID(deviceId);
         System.out.println(scene);
-        return makeSceneService.MakeScene(scene);
+        Map map = new HashMap();
+        int motto =  makeSceneService.MakeScene(scene);
+        map.put("motto",motto);
+        if(motto == 1) {
+            map.put("newsceneID", newsceneID);
+        }
+        return map;
     }
     /**
      * 以当前时间生成场景ID
@@ -93,6 +105,11 @@ public class MakeSceneController {
         String hh=Integer.toString(c.get(Calendar.HOUR_OF_DAY));
         String mi=Integer.toString(c.get(Calendar.MINUTE));
         String ss = Integer.toString(c.get(Calendar.SECOND));
+        if(c.get(Calendar.MONTH)+1<10){month = "0"+month;}
+        if(c.get(Calendar.DAY_OF_MONTH)<10){day = "0"+day;}
+        if(c.get(Calendar.HOUR_OF_DAY)<10){hh = "0"+hh;}
+        if(c.get(Calendar.MINUTE)<10){mi = "0"+mi;}
+        if(c.get(Calendar.SECOND)<10){ss = "0"+ss;}
         System.out.println("新的场景ID："+year+month+day+hh+mi+ss);
         return year+month+day+hh+mi+ss;
     }

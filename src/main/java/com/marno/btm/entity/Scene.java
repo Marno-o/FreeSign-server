@@ -4,12 +4,13 @@ import java.util.Date;
 /**
  * table name:  scene
  * author name: Marno
- * create time: 2020-02-19 04:07:27
+ * create time: 2020-02-21 14:30:44
  */ 
 public class Scene{
 
 	private String sceneID;
 	private String originatorID;
+	private String userPic;
 	private String userName;
 	private String theme;
 	private String hoster;
@@ -33,6 +34,12 @@ public class Scene{
 	}
 	public String getOriginatorID(){
 		return originatorID;
+	}
+	public void setUserPic(String userPic){
+		this.userPic=userPic;
+	}
+	public String getUserPic(){
+		return userPic;
 	}
 	public void setUserName(String userName){
 		this.userName=userName;
@@ -106,6 +113,7 @@ public class Scene{
 		return "scene{" + 
 			"sceneID=" + sceneID + 
 			", originatorID=" + originatorID + 
+			", userPic=" + userPic + 
 			", userName=" + userName + 
 			", theme=" + theme + 
 			", hoster=" + hoster + 
